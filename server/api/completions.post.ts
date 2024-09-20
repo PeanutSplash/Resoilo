@@ -20,6 +20,6 @@ async function createCompletion(
   headers: RequestHeaders,
   body: CreateCompletionRequest
 ) {
-  const openai = getOpenAIApiInstance("text", headers, body);
+  const openai = getOpenAIApiInstance("text", headers);
   return openai.createCompletion(body);
 }
