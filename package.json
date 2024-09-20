@@ -16,6 +16,8 @@
     "@nuxtjs/i18n": "8.0.0-beta.12",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/crypto-js": "^4.2.2",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^18",
     "nuxt": "^3.6.0",
     "nuxt-icon": "^0.4.1",

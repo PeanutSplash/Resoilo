@@ -24,6 +24,9 @@
 
 <script setup lang="ts">
 import type { ChatMessageExItem } from "@/types";
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt();
 
 defineProps<{
   item: ChatMessageExItem;
