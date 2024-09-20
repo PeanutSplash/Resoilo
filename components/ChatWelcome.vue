@@ -25,7 +25,7 @@
 import { Tool, SunOne, Chip } from "@icon-park/vue-next";
 import { Icon } from "@icon-park/vue-next/lib/runtime";
 import { useChatStore } from "@/stores/chat";
-import { ChatMessageExOption, ChatRole } from "@/types";
+import type { ChatMessageExOption, ChatRole } from "@/types";
 
 interface ChatMessageTemplate {
   title: string;

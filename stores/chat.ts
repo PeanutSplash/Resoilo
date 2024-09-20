@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {
+import type {
   ApiRequest,
   ChatItem,
   ChatMessageExItem,
@@ -9,7 +9,7 @@ import {
   ChatSettingItem,
   ImageSize,
 } from "@/types";
-import {
+import type {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
   CreateImageRequest,
@@ -389,7 +389,7 @@ export const useChatStore = defineStore("chat", () => {
       });
       const translateResponse: CreateChatCompletionResponse =
         await response.json();
-      prompt = translateResponse.choices[0].message!.content;
+      prompt = translateResponse.choices[0].message!.content ?? '';
     } catch (error) {
       console.error(error);
     }

@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { ApiType, ChatSettingOption } from "@/types";
+import type { ApiType, ChatSettingOption } from "@/types";
 import { LocaleObject } from "@nuxtjs/i18n/dist/runtime/composables";
 import { useChatStore } from "~/stores/chat";
 

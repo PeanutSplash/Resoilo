@@ -1,4 +1,4 @@
-import { ChatItem, ImageSize } from "@/types";
+import type { ChatItem, ImageSize } from "@/types";
 
 export type ChatRole = "user" | "assistant" | "system";
 
