@@ -21,7 +21,7 @@ const funcs = [
   { type: "chat", icon: Plus },
   { type: "image", icon: AddPicture },
   { type: "setting", icon: Setting },
-  { type: "github", icon: Github },
+  // { type: "github", icon: Github },
 ];
 
 async function clickBtn(type: string) {
