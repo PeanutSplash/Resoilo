@@ -389,7 +389,7 @@ export const useChatStore = defineStore("chat", () => {
       });
       const translateResponse: CreateChatCompletionResponse =
         await response.json();
-      prompt = translateResponse.choices[0].message!.content ?? '';
+      prompt = translateResponse.choices[0].message!.content ?? "";
     } catch (error) {
       console.error(error);
     }
@@ -453,10 +453,6 @@ export const useChatStore = defineStore("chat", () => {
     return {
       "x-api-type": setting.apiType,
       "x-cipher-api-key": setting.apiKey ?? "",
-      "x-api-host": setting.apiHost ?? "",
-      "x-azure-api-version": setting.azureApiVersion ?? "",
-      "x-azure-gpt35-deployment-id": setting.azureGpt35DeploymentId ?? "",
-      "x-azure-gpt4-deployment-id": setting.azureGpt4DeploymentId ?? "",
     };
   }
 

@@ -38,48 +38,6 @@
           v-model.trim="setting.apiKey"
         />
       </div>
-
-      <template v-if="setting.apiType === 'azure'">
-        <!-- API Host -->
-        <div>
-          <label>{{ $t("ChatSetting.apiHost.label") }}</label>
-          <input
-            type="text"
-            :placeholder="$t('ChatSetting.apiHost.placeholder')"
-            v-model.trim="setting.apiHost"
-          />
-        </div>
-
-        <!-- Azure API Version -->
-        <div>
-          <label>{{ $t("ChatSetting.azureApiVersion.label") }}</label>
-          <input
-            type="text"
-            :placeholder="$t('ChatSetting.azureApiVersion.placeholder')"
-            v-model.trim="setting.azureApiVersion"
-          />
-        </div>
-
-        <!-- Azure Deployment ID (GPT-3.5) -->
-        <div>
-          <label>{{ $t("ChatSetting.azureGpt35DeploymentId.label") }}</label>
-          <input
-            type="text"
-            :placeholder="$t('ChatSetting.azureGpt35DeploymentId.placeholder')"
-            v-model.trim="setting.azureGpt35DeploymentId"
-          />
-        </div>
-
-        <!-- Azure Deployment ID (GPT-4) -->
-        <div>
-          <label>{{ $t("ChatSetting.azureGpt4DeploymentId.label") }}</label>
-          <input
-            type="text"
-            :placeholder="$t('ChatSetting.azureGpt4DeploymentId.placeholder')"
-            v-model.trim="setting.azureGpt4DeploymentId"
-          />
-        </div>
-      </template>
     </template>
 
     <!-- temperature -->
@@ -143,17 +101,12 @@ const availableLocales = i18n.locales.value as LocaleObject[];
 
 const apiTypes = [
   { label: "OpenAI", value: "openai" },
-  { label: "Azure", value: "azure" },
 ];
 
 const useEnv = runtimeConfig.public.useEnv === "yes";
 const setting = ref<ChatSettingOption>({
   apiType: useEnv ? (runtimeConfig.public.apiType as ApiType) : "openai",
   apiKey: useEnv ? undefined : "",
-  apiHost: useEnv ? undefined : "",
-  azureGpt35DeploymentId: useEnv ? undefined : "",
-  azureGpt4DeploymentId: useEnv ? undefined : "",
-  azureApiVersion: useEnv ? undefined : "2023-06-01-preview",
   temperature: useEnv ? Number(runtimeConfig.public.defaultTemperature) : 1,
   locale: i18n.getBrowserLocale()!,
   colorMode: "system",

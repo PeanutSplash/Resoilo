@@ -1,88 +1,38 @@
 import { RequestHeaders } from "h3";
 import { aesCrypto } from "~/server/api/crypto.post";
-import { Configuration, CreateChatCompletionRequest, OpenAIApi } from "openai";
-import { ApiRequest, ApiRequestModel, ApiType, ChatModel } from "~/types";
+import { Configuration, OpenAIApi } from "openai";
+import { ApiRequestModel } from "~/types";
 import { createAxiosInstance } from "./axios";
-import { AzureOpenAIApi } from "./azure";
 
 const runtimeConfig = useRuntimeConfig();
 
+// 创建OpenAI配置
 function createOpenAIConfiguration(
   model: ApiRequestModel,
-  headers: RequestHeaders,
-  body?: ApiRequest
+  headers: RequestHeaders
 ) {
+  // 判断是否使用环境变量
   const useEnv = runtimeConfig.public.useEnv === "yes";
 
-  const apiType = useEnv
-    ? runtimeConfig.public.apiType
-    : (headers["x-api-type"] as ApiType);
+  // 根据环境变量或请求头获取API配置
   const apiKey = useEnv
     ? runtimeConfig.apiKey
     : aesCrypto({ message: headers["x-cipher-api-key"]!, type: "de" });
-  const apiHost = useEnv ? runtimeConfig.apiHost : headers["x-api-host"];
-  const azureApiVersion = useEnv
-    ? runtimeConfig.azureApiVersion
-    : headers["x-azure-api-version"];
-  const azureGpt35DeploymentId = useEnv
-    ? runtimeConfig.azureGpt35DeploymentId
-    : headers["x-azure-gpt35-deployment-id"]!;
-  const azureGpt4DeploymentId = useEnv
-    ? runtimeConfig.azureGpt4DeploymentId
-    : headers["x-azure-gpt4-deployment-id"]!;
 
-  // Identify the basePath of the Azure OpenAI Service from the OpenAI model name
-  let basePath = `${apiHost}/openai`;
-  if (model === "chat") {
-    let azureDeploymentId = "";
-    switch ((body as CreateChatCompletionRequest).model as ChatModel) {
-      case "gpt-3.5-turbo":
-        azureDeploymentId = azureGpt35DeploymentId;
-        break;
-      case "gpt-4":
-        azureDeploymentId = azureGpt4DeploymentId;
-        break;
-    }
-    basePath += `/deployments/${azureDeploymentId}`;
-  } else if (model === "text") {
-    // TODO: Support completion model
-  }
-
-  const azureOptions =
-    apiType === "azure"
-      ? {
-          basePath,
-          baseOptions: {
-            headers: { "api-key": apiKey },
-            params: {
-              "api-version": azureApiVersion,
-            },
-          },
-        }
-      : {};
-
+  // 返回配置对象
   return new Configuration({
     apiKey,
-    ...azureOptions,
+    basePath: "https://chat.mgod.top/v1",
   });
 }
 
+// 获取OpenAI API实例
 export function getOpenAIApiInstance(
   model: ApiRequestModel,
-  headers: RequestHeaders,
-  body?: ApiRequest
+  headers: RequestHeaders
 ) {
-  const configuration = createOpenAIConfiguration(model, headers, body);
+  const configuration = createOpenAIConfiguration(model, headers);
   const axiosInstance = createAxiosInstance();
 
-  const useEnv = runtimeConfig.public.useEnv === "yes";
-  const apiType = useEnv
-    ? runtimeConfig.public.apiType
-    : (headers["x-api-type"] as ApiType);
-
-  if (apiType === "azure") {
-    return new AzureOpenAIApi(configuration, undefined, axiosInstance);
-  } else {
-    return new OpenAIApi(configuration, undefined, axiosInstance);
-  }
+  return new OpenAIApi(configuration, undefined, axiosInstance);
 }
