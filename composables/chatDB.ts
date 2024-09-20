@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-import {
+import type {
   ChatSettingOption,
   ChatItem,
   ChatMessageExItem,
