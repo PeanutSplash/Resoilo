@@ -95,7 +95,7 @@ export const useChatStore = defineStore("chat", () => {
   }
 
   async function removeChat(chatId: number) {
-    if (!confirm(i18n.t("removeChatConfirm"))) return;
+    // if (!confirm(i18n.t("removeChatConfirm"))) return;
     await db.transaction("rw", "chat", "message", async () => {
       await db.chat.delete(chatId);
       await clearMessages(chatId);

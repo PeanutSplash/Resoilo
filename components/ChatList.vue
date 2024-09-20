@@ -26,7 +26,7 @@
       />
     </div>
 
-    <div class="m-6 mb-2 text-sm text-slate-500">
+    <!-- <div class="m-6 mb-2 text-sm text-slate-500">
       {{ $t("ChatList.images") }}
     </div>
     <div
@@ -50,7 +50,7 @@
         class="invisible group-hover:visible text-rose-400"
         @click.stop.left="store.removeChat(item.id)"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -19,7 +19,7 @@ import { useChatStore } from "@/stores/chat";
 const store = useChatStore();
 const funcs = [
   { type: "chat", icon: Plus },
-  { type: "image", icon: AddPicture },
+  // { type: "image", icon: AddPicture },
   { type: "setting", icon: Setting },
   // { type: "github", icon: Github },
 ];
