@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "ChatGPT",
+    "title": "Resolio",
     "description": "基于 OpenAI 的 ChatGPT 自然语言模型人工智能对话"
   },
   "BaseInput": {

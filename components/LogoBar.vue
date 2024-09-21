@@ -1,6 +1,7 @@
 <template>
-  <div class="flex items-center h-16 px-6 space-x-2 border-b">
-    <Robot size="30" /><span class="text-2xl font-bold">
+  <div class="flex items-center justify-center h-16 px-6 space-x-2 border-b">
+    <Robot size="30" />
+    <span class="text-2xl font-bold">
       {{ $t("app.title") }}
     </span>
   </div>
