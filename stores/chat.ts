@@ -69,23 +69,38 @@ export const useChatStore = defineStore("chat", () => {
   }
 
   async function createChat(item?: ChatOption) {
-    chat.value = undefined;
-    const chatItem: ChatOption = item ?? { name: "New Chat", order: 0 };
-    await db.chat.put({ ...chatItem });
-
-    // 加载列表并打开第一个 (load the list and open the first)
-    await getAllChats();
+    // 检查是否存在未使用的新聊天
+    const unusedChat = chats.value.find((c) => c.name === "New Chat");
+    if (unusedChat) {
+      // 如果存在未使用的新聊天,直接打开它
+      await openChat(unusedChat);
+    } else {
+      // 否则创建新的聊天
+      chat.value = undefined;
+      const chatItem: ChatOption = item ?? { name: "New Chat", order: 0 };
+      await db.chat.put({ ...chatItem });
+      await getAllChats();
+    }
   }
 
   async function createImageChat(item?: ChatOption) {
-    chat.value = undefined;
-    const chatItem: ChatOption = item ?? {
-      name: "New Image",
-      model: "dall-e",
-      order: 0,
-    };
-    await db.chat.put({ ...chatItem });
-    await getAllChats();
+    // 检查是否存在未使用的新图像聊天
+    const unusedImageChat = chats.value.find((c) => c.name === "New Image");
+
+    if (unusedImageChat) {
+      // 如果存在未使用的新图像聊天,直接打开它
+      await openChat(unusedImageChat);
+    } else {
+      // 否则创建新的图像聊天
+      chat.value = undefined;
+      const chatItem: ChatOption = item ?? {
+        name: "New Image",
+        model: "dall-e",
+        order: 0,
+      };
+      await db.chat.put({ ...chatItem });
+      await getAllChats();
+    }
   }
 
   async function openChat(item: ChatItem) {
