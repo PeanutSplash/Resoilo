@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ChatRole } from "@/types";
-
+import ImageAvatar from "@/assets/images/avatar.png";
 defineProps<{
   role: ChatRole;
 }>();
@@ -8,7 +8,7 @@ defineProps<{
 const avatars = {
   assistant: "/assistant.webp",
   system: "/system.png",
-  user: "https://source.boringavatars.com/beam/?square",
+  user: ImageAvatar,
 };
 </script>
 
