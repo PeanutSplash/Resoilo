@@ -171,7 +171,8 @@
     "chat": "新規チャット",
     "image": "新規イメージ",
     "setting": "設定",
-    "github": "プロジェクト"
+    "github": "プロジェクト",
+    "interview": ""
   },
   "HotKeyHelp": {
     "title": "ショートカットキー",

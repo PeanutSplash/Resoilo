@@ -103,6 +103,8 @@ export const useChatStore = defineStore("chat", () => {
     }
   }
 
+  async function createInterviewChat(item?: ChatOption) {}
+
   async function openChat(item: ChatItem) {
     // console.log(item);
     chat.value = item;
@@ -502,5 +504,6 @@ export const useChatStore = defineStore("chat", () => {
     getLocale,
     getColorMode,
     getHeaders,
+    createInterviewChat,
   };
 });

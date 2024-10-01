@@ -171,7 +171,8 @@
     "chat": "新建聊天",
     "image": "新图片",
     "setting": "设置",
-    "github": "查看项目"
+    "github": "查看项目",
+    "interview": "新建面试"
   },
   "HotKeyHelp": {
     "title": "全局快捷键",
