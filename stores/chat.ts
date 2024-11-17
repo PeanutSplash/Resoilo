@@ -27,6 +27,7 @@ export const useChatStore = defineStore("chat", () => {
   let controller: AbortController;
 
   const showSetting = ref(false);
+  const showInterview = ref(false);
   const showHelp = ref(false);
 
   const models = ref<Model[]>([]);
@@ -475,6 +476,7 @@ export const useChatStore = defineStore("chat", () => {
 
   return {
     showSetting,
+    showInterview,
     showHelp,
     chats,
     chat,

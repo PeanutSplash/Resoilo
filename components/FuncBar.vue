@@ -34,9 +34,14 @@ const funcs = [
 async function clickBtn(type: string) {
   if (type === "chat") {
     store.createChat();
+    store.showSetting = false;
+    store.showInterview = false;
     toggleSideBar();
   } else if (type === "interview") {
-    store.createInterviewChat();
+    store.showInterview = true;
+    store.showSetting = false;
+
+    // store.createInterviewChat();
     toggleSideBar();
   } else if (type === "image") {
     store.createImageChat();

@@ -66,6 +66,7 @@ import type { ChatItem } from "@/types";
 const store = useChatStore();
 
 async function openChat(item: ChatItem) {
+  store.showInterview = false;
   store.$patch({ showSetting: false, chat: item });
   await store.getChatMessages(item.id);
   toggleSideBar();

@@ -9,14 +9,21 @@
     <ChatSideBar id="sidebar" class="sm:visible" />
     <template id="main" class="hidden sm:visible flex w-screen h-screen">
       <ChatSetting class="flex-1" v-if="store.showSetting" />
-      <ChatContentBar class="flex-1" v-else />
+      <Interview
+        class="flex-1"
+        v-if="store.showInterview && !store.showSetting"
+      />
+      <ChatContentBar
+        class="flex-1"
+        v-if="store.showInterview === false && !store.showSetting"
+      />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useChatStore } from "@/stores/chat";
-import { CreateChatCompletionRequest } from "openai";
+import type { CreateChatCompletionRequest } from "openai";
 import hotkeys from "hotkeys-js";
 
 const store = useChatStore();
